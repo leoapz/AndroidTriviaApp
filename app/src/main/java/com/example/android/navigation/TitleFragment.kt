@@ -14,14 +14,15 @@ class TitleFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding: FragmentTitleBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_title, container, false)
-//        Se lo puede realizar asi tambien
-//        binding.playButton.setOnClickListener { view: View ->
-//            Navigation.findNavController(view).navigate(R.id.action_titleFragment_to_gameFragment)
-//        }
 
-        binding.playButton.setOnClickListener(
-          Navigation.createNavigateOnClickListener(R.id.action_titleFragment_to_gameFragment)
-        )
+        binding.playButton.setOnClickListener { view: View ->
+//            Navigation.findNavController(view).navigate(R.id.action_titleFragment_to_gameFragment)
+            view.findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToGameFragment())
+        }
+//        Se lo puede realizar asi tambien
+//        binding.playButton.setOnClickListener(
+//          Navigation.createNavigateOnClickListener(TitleFragmentDirections.actionTitleFragmentToGameFragment())
+//        )
 
         setHasOptionsMenu(true)
 
@@ -36,6 +37,6 @@ class TitleFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return NavigationUI.onNavDestinationSelected(item!!,
         view!!.findNavController())
-                || super.onOptionsItemSelected(item)
+                ||   super.onOptionsItemSelected(item)
     }
 }
